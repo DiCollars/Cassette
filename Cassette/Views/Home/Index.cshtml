@@ -1,0 +1,20 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Музыка";
+    var Song = Model.Where(currentSong => currentSong == ViewBag.SongName);
+}
+<div>
+    <h4 style="text-align:center">@Song.First()</h4>
+    <audio controls>
+        <source src="~/music/@Song.First()" type="audio/mp3" />
+    </audio>
+</div>
+
+<br />
+@foreach (var song in Model)
+{
+    <a class="btn btn-dark btn-lg btn-block" asp-controller="Home" asp-action="Index" asp-route-Id="@song">
+        @song
+    </a>
+}
+
